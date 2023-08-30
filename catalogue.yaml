@@ -22,7 +22,7 @@
     ansible.builtin.user:
       name: roboshop 
 
-  - name: check /app directory create or not
+  - name: check /app directory exists or not
     ansible.builtin.stat: #stat is the module check the statistics of files and directories
       path: /app
     register: directory
