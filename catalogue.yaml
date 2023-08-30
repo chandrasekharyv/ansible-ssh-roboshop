@@ -7,4 +7,29 @@
   tasks:
   - name: setup NodeJs repos 
     ansible.builtin.shell: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+  - name: install NodeJs
+    ansible.builtin.yum:
+      name: nodejs
+      state: present 
+
+  - name: check roboshop user exist or not
+    ansible.builtin.command: id roboshop
+    register: out
+    ignore_errors: true
+
+  - when: out.rc !=0
+    name: add roboshop user
+    ansible.builtin.user:
+      name: roboshop 
+
+  - name: check /app directory create or not
+    ansible.builtin.stat: #stat is the module check the statistics of files and directories
+      path: /app
+    register: directory
+  
+  - name: print the directory
+    ansible.builtin.debug:
+      msg: "output: {{directory}}"
+  
+
 
