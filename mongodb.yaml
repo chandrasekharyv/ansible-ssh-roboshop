@@ -5,7 +5,7 @@
   become: true
 
   tasks:
-  - name: copy mongo repo to yum.repos.d, Setup the MongoDB repo file
+  - name: copy mongo repo to yum.repos.d
     ansible.builtin.copy:
     src: mongodb.repo
     dest: /etc/yum.repos.d/mongo.repo
