@@ -1,0 +1,10 @@
+# inastall and setup catalogue dependencies
+
+- name: install nodejs in catalogue component
+  hosts: catalogue
+  become: yes
+
+  tasks:
+  - name: setup NodeJs repos 
+    ansible.builtin.script: curl -sL https://rpm.nodesource.com/setup_lts.x | bash
+    
