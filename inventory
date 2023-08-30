@@ -1,0 +1,8 @@
+#inventory is a file to interact with ansible-playbook
+
+[mongodb]
+mongodb.devopstechsharing.ml
+
+[catalogue]
+
+[web]
