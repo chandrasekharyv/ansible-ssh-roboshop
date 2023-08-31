@@ -73,7 +73,7 @@
   
   - name: Load catalogue schema
     ansible.builtin.command: mongo --host mongodb.awsdevopschandu.tk < /app/schema/catalogue.js
-    
+    unique: true
   
   - name: restart catalogue service 
     ansible.builtin.service:
