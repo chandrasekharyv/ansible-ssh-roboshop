@@ -1,0 +1,44 @@
+# setup web components and install 
+- name: install catalogue component
+  hosts: web
+  become: true
+
+  tasks:
+  - name: install nginx
+    ansible.builtin.yum:
+      name: nginx
+      state: installed
+  
+  - name: start and enable nginx 
+    ansible.builtin.service:
+      name: nginx
+      state: started
+      enabled: true
+
+  - name: remove the html directory /usr/share/nginx/html/
+    ansible.builtin.file:
+      path: /usr/share/nginx/html/
+      state: absent 
+  
+  - name: create html directory
+    ansible.builtin.file:
+      path: /usr/share/nginx/html
+      state: directory
+  
+
+  - name: download web content
+    ansible.builtin.get_url:
+      url: https://roboshop-builds.s3.amazonaws.com/web.zip
+      dest: /tmp
+
+  - name: extract zip file from /tmp/web.zip to /usr/share/nginx/html
+    ansible.builtin.unarchive:
+    src: /tmp/web.zip
+    dest: /usr/share/nginx/html
+    remote_src: yes
+  
+  - name: restart nginx
+    ansible.builtin.service:
+      name: nginx
+      state: restarted
+
