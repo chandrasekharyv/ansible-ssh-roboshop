@@ -33,9 +33,9 @@
 
   - name: extract zip file from /tmp/web.zip to /usr/share/nginx/html
     ansible.builtin.unarchive:
-    src: /tmp/web.zip
-    dest: /usr/share/nginx/html
-    remote_src: yes
+      src: /tmp/web.zip
+      dest: /usr/share/nginx/html
+      remote_src: yes
   
   - name: restart nginx
     ansible.builtin.service:
