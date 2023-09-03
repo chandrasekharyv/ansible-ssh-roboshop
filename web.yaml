@@ -1,5 +1,5 @@
 # setup web components and install 
-- name: install catalogue component
+- name: install web component
   hosts: web
   become: true
 
